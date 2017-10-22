@@ -88,8 +88,19 @@ public class MainActivity extends AppCompatActivity {
 
                 }
 
+<<<<<<< HEAD
             }
         });
+=======
+        // Create the adapter that will return a fragment for each of the three
+        // primary sections of the activity.
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+
+        // Set up the ViewPager with the sections adapter.
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
+>>>>>>> 572c160fa9b7829a1ccd5e5c0e86ca9c4df994fa
+
 
 
       FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -127,9 +138,54 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+=======
+    
   
 
+    /**
+     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
+     * one of the sections/tabs/pages.
+     */
+    public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
+        public SectionsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                    Maps_tab tab1 = new Maps_tab();
+                    return tab1;
+                case 1:
+                    Filter_tab tab2 = new Filter_tab();
+                    return tab2;
+
+            }
+            return null;
+
+        }
+
+        @Override
+        public int getCount() {
+            // Show 3 total pages.
+            return 2;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return "Maps";
+
+                case 1:
+                    return "Filter";
+            }
+            return null;
+        }
+    }
+>>>>>>> 572c160fa9b7829a1ccd5e5c0e86ca9c4df994fa
 
 
 }
