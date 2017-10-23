@@ -44,8 +44,7 @@ public class ArtActivity extends AppCompatActivity {
         art = realm.where(Art.class).equalTo("id",id).findFirst();
         name.setText(art.getName());
         artist.setText(art.getArtist());
-        address.setText(art.getLocation());
-
+        address.setText(art.getAddress());
 
         if(art.getImage() != null) {
             Bitmap bmp = BitmapFactory.decodeByteArray(art.getImage(), 0, art.getImage().length);

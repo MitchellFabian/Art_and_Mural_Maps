@@ -3,19 +3,29 @@ package com.bas.android.muralmaps;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import io.realm.RealmObject;
+
 
 /**
  * Created by Mitchell on 10/15/2017.
  */
 
-public class Art {
+public class Art extends RealmObject{
     private String name;
     private String artist;
     private User user;
     private int likes;
-
+    private String address;
 
     private LatLng location;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public LatLng getLocation() {
         return location;
