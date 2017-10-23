@@ -4,6 +4,7 @@ package com.bas.android.muralmaps;
  * Created by Bas on 10/9/17.
  */
 
+
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -11,6 +12,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -25,11 +27,13 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 
 public class Maps_tab extends Fragment implements OnMapReadyCallback, LocationListener {
+
 
     private GoogleMap mMap;
     private MapView mapView;
@@ -68,6 +72,7 @@ public class Maps_tab extends Fragment implements OnMapReadyCallback, LocationLi
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
+
         LatLng sydney = new LatLng(41.583, -93.639);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 17.0f));
@@ -108,6 +113,7 @@ public class Maps_tab extends Fragment implements OnMapReadyCallback, LocationLi
     public void onProviderDisabled(String s) {
 
     }
+
 
 }
 
