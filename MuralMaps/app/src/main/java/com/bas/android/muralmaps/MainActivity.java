@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
         realm = Realm.getDefaultInstance();
         user = realm.where(User.class).equalTo("username", getIntent().getStringExtra("username")).findFirst();
 
-
         toggleButton = (Button) findViewById(R.id.toggleButton);
         filterSpinner = (Spinner) findViewById(R.id.filterList);
 
@@ -94,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 if(state)
                 {
                     mPagerAdapter = frag.beginTransaction();
-                    mPagerAdapter.replace(R.id.container, new Filter_tab(), "TAG_List");
+                    mPagerAdapter.replace(R.id.container, new ArtListFragment(), "TAG_List");
                     toggleButton.setText("Map View");
                     state = false;
                     mPagerAdapter.commit();
