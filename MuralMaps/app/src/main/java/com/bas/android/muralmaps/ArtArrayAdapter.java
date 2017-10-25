@@ -39,14 +39,11 @@ public class ArtArrayAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View rowView = mInflater.inflate(R.layout.art_cell, parent, false);
 
-        TextView name = (TextView) rowView.findViewById(R.id.name_label);
+        TextView name = (TextView) rowView.findViewById(R.id.art_label);
         name.setText(getItem(position).getName());
 
         TextView artist = (TextView) rowView.findViewById(R.id.artist_label);
         artist.setText(getItem(position).getArtist());
-
-        TextView likes = (TextView) rowView.findViewById(R.id.likes_label);
-        likes.setText(getItem(position).getLikes());
 
         return rowView;
     }

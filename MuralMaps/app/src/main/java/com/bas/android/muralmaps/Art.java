@@ -16,6 +16,15 @@ public class Art extends RealmObject{
     private User user;
     private int likes;
     private String address;
+    private byte[] image;
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
 
     private LatLng location;
 
