@@ -45,10 +45,9 @@ public class ArtListFragment extends Fragment {
         artList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l){
-                final Art bulldog = (Art) adapterView.getItemAtPosition(i);
+                final Art art = (Art) adapterView.getItemAtPosition(i);
                 Intent intent = new Intent(view.getContext(), ArtActivity.class);
                 intent.putExtra("art",art.getId());
-                intent.putExtra("username",mainActivity.user.getUsername());
                 startActivity(intent);
             }
         });

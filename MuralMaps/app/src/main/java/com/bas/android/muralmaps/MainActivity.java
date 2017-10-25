@@ -31,8 +31,6 @@ import io.realm.SyncCredentials;
 import io.realm.SyncUser;
 
 
-import static android.R.attr.password;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -55,11 +53,19 @@ public class MainActivity extends AppCompatActivity {
     private Button toggleButton;
     private Spinner filterSpinner;
     private boolean state;
+    public Realm realm;
+    public User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        login("cs188","MyBeautifulBulldogApp");
+        realm = Realm.getDefaultInstance();
+        user = realm.where(User.class).equalTo("username", getIntent().getStringExtra("username")).findFirst();
+
 
         toggleButton = (Button) findViewById(R.id.toggleButton);
         filterSpinner = (Spinner) findViewById(R.id.filterList);
@@ -141,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void login(final String email, final String password, final String username) {
+    private void login(final String username, final String password) {
         if(SyncUser.currentUser() != null) {
             SyncUser.currentUser().logout();
 
@@ -152,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        SyncCredentials myCredentials = SyncCredentials.usernamePassword(email, password, false);
+        SyncCredentials myCredentials = SyncCredentials.usernamePassword(username, password, false);
         SyncUser.loginAsync(myCredentials, "http://52.205.194.154:9080", new SyncUser.Callback() {
             @Override
             public void onSuccess(SyncUser user) {
@@ -167,7 +173,6 @@ public class MainActivity extends AppCompatActivity {
 
                         //successfully created a user
                         final User user = new User();
-                        user.setUsername(username);
                         realm.executeTransaction(new Realm.Transaction() {
                             @Override
                             public void execute(Realm realm) {
@@ -178,7 +183,6 @@ public class MainActivity extends AppCompatActivity {
                         realm.close();
 
                         Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                        intent.putExtra("username", username);
                         startActivity(intent);
                     }
                 });

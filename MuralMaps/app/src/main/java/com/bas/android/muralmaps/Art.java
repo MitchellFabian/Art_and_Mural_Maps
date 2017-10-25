@@ -17,6 +17,17 @@ public class Art extends RealmObject{
     private int likes;
     private String address;
     private byte[] image;
+    private double lat;
+    private double lng;
+    private String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public byte[] getImage() {
         return image;
@@ -26,8 +37,6 @@ public class Art extends RealmObject{
         this.image = image;
     }
 
-    private LatLng location;
-
     public String getAddress() {
         return address;
     }
@@ -36,14 +45,21 @@ public class Art extends RealmObject{
         this.address = address;
     }
 
-    public LatLng getLocation() {
-        return location;
+    public double getLat() {
+        return lat;
     }
 
-    public void setLocation(LatLng location) {
-        this.location = location;
+    public void setLat(double lat) {
+        this.lat = lat;
     }
 
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
+    }
 
     public String getName() {
         return name;
