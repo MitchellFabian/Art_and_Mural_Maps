@@ -16,6 +16,8 @@ import java.util.ArrayList;
 
 import io.realm.Realm;
 
+import static java.lang.Boolean.logicalXor;
+
 public class ArtActivity extends AppCompatActivity {
 
     private TextView name;
@@ -25,7 +27,7 @@ public class ArtActivity extends AppCompatActivity {
     private ImageView picture;
     private User owner;
     private Art art;
-    private Button like;
+    private Button likeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +39,7 @@ public class ArtActivity extends AppCompatActivity {
         address = (TextView) findViewById(R.id.location);
         realm = Realm.getDefaultInstance();
         picture = (ImageView) findViewById(R.id.art_image);
-        like = (Button) findViewById(R.id.like_button);
+        likeButton = (Button) findViewById(R.id.like_button);
 
         String username = (String) getIntent().getStringExtra("username");
         owner = realm.where(User.class).equalTo("username", username).findFirst();
@@ -54,6 +56,19 @@ public class ArtActivity extends AppCompatActivity {
         }
         name.setText(art.getName());
 
+        likeButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                realm.executeTransaction(new Realm.Transaction(){
+                    @Override
+                    public void execute(Realm realm){
+                        art.setLike(logicalXor(art.getLike(),Boolean.TRUE));
+
+                        finish();
+                    }
+                });
+            }
+        });
     }
     @Override
     protected void onDestroy() {
