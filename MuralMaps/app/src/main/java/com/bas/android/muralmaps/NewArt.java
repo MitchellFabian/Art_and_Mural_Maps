@@ -3,13 +3,18 @@ package com.bas.android.muralmaps;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 
@@ -24,6 +29,7 @@ public class NewArt extends AppCompatActivity {
     private ImageButton imageButton;
     private EditText longitude;
     private EditText latitude;
+    private final static int REQUEST_GALLERY = 9001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +58,14 @@ public class NewArt extends AppCompatActivity {
                             art.setName(name.getText().toString());
                             art.setLng(Double.parseDouble(longitude.getText().toString()));
                             art.setLat(Double.parseDouble(latitude.getText().toString()));
-                            art.setId(realm.where(Art.class).findAllSorted("id").last().getId() + 1);
+
+                            //check to see if any Arts in the Realm
+                            if (realm.where(Art.class).findAllSorted("id").isEmpty()) {
+                                art.setId("0");
+                            } else {
+                                art.setId(realm.where(Art.class).findAllSorted("id").last().getId() + 1);
+                            }
+
                             BitmapDrawable image = (BitmapDrawable) imageButton.getDrawable();
                             ByteArrayOutputStream baos = new ByteArrayOutputStream();
                             image.getBitmap().compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -70,10 +83,8 @@ public class NewArt extends AppCompatActivity {
         imageButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                if(takePictureIntent.resolveActivity(getPackageManager())!= null){
-                    startActivityForResult(takePictureIntent, 1);
-                }
+                Intent i = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(i, REQUEST_GALLERY);
             }
         });
 
@@ -81,12 +92,10 @@ public class NewArt extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            imageButton.setImageBitmap(imageBitmap);
-        }
-
+        Log.d("check","in activity result");
+        Uri selectedPhoto = data.getData();
+        System.out.println(selectedPhoto);
+        Picasso.with(NewArt.this).load(selectedPhoto).into((ImageButton)findViewById(R.id.image_button));
     }
     @Override
     protected void onDestroy() {

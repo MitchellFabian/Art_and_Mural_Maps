@@ -145,9 +145,9 @@ public class MainActivity extends AppCompatActivity {
         filterSpinner = (Spinner) findViewById(R.id.filterList);
 
         frag = getSupportFragmentManager();
-//        mPagerAdapter = frag.beginTransaction();
-//        mPagerAdapter.add(R.id.container, new Maps_tab() , "TAG_MAP");
-//        mPagerAdapter.commit();
+        mPagerAdapter = frag.beginTransaction();
+        mPagerAdapter.add(R.id.container, new Maps_tab() , "TAG_MAP");
+        mPagerAdapter.commit();
         toggleButton.setText("List View");
         state = true;
 
@@ -191,8 +191,8 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(getBaseContext(), NewArt.class);
+                startActivity(intent);
             }
         });
     }
