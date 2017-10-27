@@ -26,7 +26,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ArtActivity"></activity>
+        <activity android:name=".ArtActivity" />
+        <activity android:name=".NewArt"></activity>
     </application>
 
 </manifest>

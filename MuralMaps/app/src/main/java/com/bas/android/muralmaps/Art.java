@@ -14,8 +14,7 @@ public class Art extends RealmObject{
     private String name;
     private String artist;
     private User user;
-    private int likes;
-    private String address;
+    private Boolean like;
     private byte[] image;
     private double lat;
     private double lng;
@@ -35,14 +34,6 @@ public class Art extends RealmObject{
 
     public void setImage(byte[] image) {
         this.image = image;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public double getLat() {
@@ -85,11 +76,11 @@ public class Art extends RealmObject{
         this.user = user;
     }
 
-    public int getLikes() {
-        return likes;
+    public Boolean getLike() {
+        return like;
     }
 
-    public void setLikes(int likes) {
-        this.likes = likes;
+    public void setLike(Boolean like) {
+        this.like = like;
     }
 }

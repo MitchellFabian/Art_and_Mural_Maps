@@ -58,15 +58,18 @@ public class ArtListFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        ArtArrayAdapter adapter = new ArtArrayAdapter(this.getActivity(), this.getAvailableArt());
-        artList.setAdapter(adapter);
+        //ArtArrayAdapter adapter = new ArtArrayAdapter(this.getActivity(), this.getAvailableArt());
+        //artList.setAdapter(adapter);
     }
 
     public ArrayList<Art> getAvailableArt(){
         ArrayList<Art> art2 = new ArrayList<Art>();
         RealmResults<Art> arts = mainActivity.realm.where(Art.class).findAll();
+        Log.d("check", "before art loop");
         for (Art art : arts) {
-            Boolean isPresent = false;
+            System.out.println(art);
+            art2.add(art);
+           // Boolean isPresent = false;
            // try {
            //     for (Vote vote : art.getVotes()) {
             //        Log.d("Warning: OWNER USERNAME", vote.getOwner().getUsername().toString());

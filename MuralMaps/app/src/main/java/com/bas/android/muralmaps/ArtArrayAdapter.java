@@ -1,10 +1,13 @@
 package com.bas.android.muralmaps;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -42,8 +45,9 @@ public class ArtArrayAdapter extends BaseAdapter {
         TextView name = (TextView) rowView.findViewById(R.id.art_label);
         name.setText(getItem(position).getName());
 
-        TextView artist = (TextView) rowView.findViewById(R.id.artist_label);
-        artist.setText(getItem(position).getArtist());
+        ImageView artImage = (ImageView) rowView.findViewById(R.id.art_image);
+        Bitmap bmp = BitmapFactory.decodeByteArray(getItem(position).getImage(), 0, getItem(position).getImage().length);
+        artImage.setImageBitmap(bmp);
 
         return rowView;
     }

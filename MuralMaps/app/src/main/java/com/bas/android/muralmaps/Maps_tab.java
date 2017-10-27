@@ -31,6 +31,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+
+import io.realm.RealmResults;
+
 
 public class Maps_tab extends Fragment implements OnMapReadyCallback, LocationListener {
 
@@ -77,6 +81,11 @@ public class Maps_tab extends Fragment implements OnMapReadyCallback, LocationLi
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 17.0f));
 
+        ArrayList<Art> availableArt = getAvailableArt();
+        for (Art a : availableArt) {
+            LatLng pin = new LatLng(a.getLat(), a.getLng());
+            mMap.addMarker(new MarkerOptions().position(pin).title(a.getName()));
+        }
 
         if (ActivityCompat.checkSelfPermission(mainActivity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mainActivity, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -93,6 +102,28 @@ public class Maps_tab extends Fragment implements OnMapReadyCallback, LocationLi
 
     }
 
+    public ArrayList<Art> getAvailableArt(){
+        ArrayList<Art> art2 = new ArrayList<Art>();
+        RealmResults<Art> arts = mainActivity.realm.where(Art.class).findAll();
+        for (Art art : arts) {
+            art2.add(art);
+            // Boolean isPresent = false;
+            // try {
+            //     for (Vote vote : art.getVotes()) {
+            //        Log.d("Warning: OWNER USERNAME", vote.getOwner().getUsername().toString());
+            //      Log.d("MYUSERNAMEINPUT", mainActivity.user.getUsername().toString());
+//
+            //                  if (vote.getOwner().getUsername().equals(mainActivity.user.getUsername())) {
+            //                    isPresent = true;
+            //              }
+            //        }
+            //      if (isPresent == false) {
+            //        art2.add(art);
+            //  }
+            //}catch (Exception e){ Log.d("Exception", e.getMessage()+e.getStackTrace());}
+        }
+        return art2;
+    }
 
     @Override
     public void onLocationChanged(Location location) {
