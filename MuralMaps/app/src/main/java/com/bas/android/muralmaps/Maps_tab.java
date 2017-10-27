@@ -6,6 +6,7 @@ package com.bas.android.muralmaps;
 
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -74,17 +75,25 @@ public class Maps_tab extends Fragment implements OnMapReadyCallback, LocationLi
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                Intent intent = new Intent(getContext(), ArtActivity.class);
+                intent.putExtra("art",marker.getTitle());
+                startActivity(intent);
+                return false;
+            }
+        });
 
         // Add a marker in Sydney and move the camera
 
-        LatLng sydney = new LatLng(41.583, -93.639);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 17.0f));
+        LatLng dsm = new LatLng(41.583, -93.639);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(dsm, 17.0f));
 
         ArrayList<Art> availableArt = getAvailableArt();
         for (Art a : availableArt) {
             LatLng pin = new LatLng(a.getLat(), a.getLng());
-            mMap.addMarker(new MarkerOptions().position(pin).title(a.getName()));
+            mMap.addMarker(new MarkerOptions().position(pin).title(a.getId()));
         }
 
         if (ActivityCompat.checkSelfPermission(mainActivity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mainActivity, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

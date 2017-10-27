@@ -43,6 +43,8 @@ public class ArtActivity extends AppCompatActivity {
         art = realm.where(Art.class).equalTo("id",id).findFirst();
         name.setText(art.getName());
         artist.setText(art.getArtist());
+        System.out.println(art.getName());
+        System.out.println(art.getArtist());
         longitude.setText(Double.toString(art.getLng()));
         latitude.setText(Double.toString(art.getLat()));
 
