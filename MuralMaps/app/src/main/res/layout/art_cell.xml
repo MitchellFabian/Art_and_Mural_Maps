@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="50dp">
 
@@ -7,22 +8,18 @@
         android:id="@+id/art_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
+        android:text="TextView"
         android:layout_centerVertical="true"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_toStartOf="@+id/artist_label"
-        android:layout_toLeftOf="@+id/artist_label"
-        android:text="TextView" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="26dp"
+        android:layout_marginEnd="26dp" />
 
-    <TextView
-        android:id="@+id/artist_label"
+    <ImageView
+        android:id="@+id/art_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/art_label"
-        android:layout_marginRight="12dp"
-        android:text="TextView" />
+        app:srcCompat="@drawable/common_full_open_on_phone"
+        android:layout_alignParentTop="true" />
+
 </RelativeLayout>

@@ -25,6 +25,7 @@ public class ArtActivity extends AppCompatActivity {
     private ImageView picture;
     private User owner;
     private Art art;
+    private Button like;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class ArtActivity extends AppCompatActivity {
         address = (TextView) findViewById(R.id.location);
         realm = Realm.getDefaultInstance();
         picture = (ImageView) findViewById(R.id.art_image);
+        like = (Button) findViewById(R.id.like_button);
 
         String username = (String) getIntent().getStringExtra("username");
         owner = realm.where(User.class).equalTo("username", username).findFirst();
