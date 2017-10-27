@@ -66,7 +66,8 @@ public class ArtListFragment extends Fragment {
         ArrayList<Art> art2 = new ArrayList<Art>();
         RealmResults<Art> arts = mainActivity.realm.where(Art.class).findAll();
         for (Art art : arts) {
-            Boolean isPresent = false;
+            art2.add(art);
+           // Boolean isPresent = false;
            // try {
            //     for (Vote vote : art.getVotes()) {
             //        Log.d("Warning: OWNER USERNAME", vote.getOwner().getUsername().toString());

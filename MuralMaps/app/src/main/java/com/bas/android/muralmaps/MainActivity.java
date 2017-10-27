@@ -180,9 +180,6 @@ public class MainActivity extends AppCompatActivity {
                         });
 
                         realm.close();
-
-                        Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                        startActivity(intent);
                     }
                 });
             }

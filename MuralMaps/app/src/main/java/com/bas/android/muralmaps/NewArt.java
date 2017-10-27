@@ -22,6 +22,8 @@ public class NewArt extends AppCompatActivity {
     private EditText name;
     private Button saveButton;
     private ImageButton imageButton;
+    private EditText longitude;
+    private EditText latitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,8 @@ public class NewArt extends AppCompatActivity {
         artist = (EditText) findViewById(R.id.new_artist);
         saveButton = (Button) findViewById(R.id.save_button);
         imageButton = (ImageButton) findViewById(R.id.image_button);
+        longitude = (EditText) findViewById(R.id.new_longitude);
+        latitude = (EditText) findViewById(R.id.new_latitude);
         realm = Realm.getDefaultInstance();
 
         saveButton.setOnClickListener(new View.OnClickListener(){
@@ -46,6 +50,8 @@ public class NewArt extends AppCompatActivity {
                             Art art = new Art();
                             art.setArtist(artist.getText().toString());
                             art.setName(name.getText().toString());
+                            art.setLng(Double.parseDouble(longitude.getText().toString()));
+                            art.setLat(Double.parseDouble(latitude.getText().toString()));
                             art.setId(realm.where(Art.class).findAllSorted("id").last().getId() + 1);
                             BitmapDrawable image = (BitmapDrawable) imageButton.getDrawable();
                             ByteArrayOutputStream baos = new ByteArrayOutputStream();
