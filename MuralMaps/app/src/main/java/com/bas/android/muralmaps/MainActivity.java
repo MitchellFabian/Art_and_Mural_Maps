@@ -62,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         login("cs188","MyBeautifulBulldogApp");
+
+        getResources().getDrawable(R.drawable.common_full_open_on_phone);
     }
 
 
@@ -105,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(SyncUser user) {
                 SyncConfiguration configuration = new SyncConfiguration
                         .Builder(user, "http://52.205.194.154:9080/~/mural_maps")
-                        .disableSSLVerification().waitForInitialRemoteData().schemaVersion((long) 12.0).build();
+                        .disableSSLVerification().waitForInitialRemoteData().schemaVersion((long) 13.0).build();
                 Realm.setDefaultConfiguration(configuration);
 
                 Realm.getInstanceAsync(configuration, new Realm.Callback() {
@@ -114,10 +116,11 @@ public class MainActivity extends AppCompatActivity {
 
                         //successfully created a user
                         final User user = new User();
+                        user.setUsername("default");
                         realm.executeTransaction(new Realm.Transaction() {
                             @Override
                             public void execute(Realm realm) {
-                                realm.copyToRealm(user);
+                                realm.copyToRealmOrUpdate(user);
                                 initializeScreen();
                             }
                         });
