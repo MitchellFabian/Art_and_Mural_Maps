@@ -19,6 +19,20 @@ public class Art extends RealmObject{
     private double lat;
     private double lng;
     private String id;
+    private int popularity;
+
+    public int getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(int popularity) {
+        this.popularity = popularity;
+    }
+
+    public void incrementPopularity()
+    {
+        this.popularity += 1;
+    }
 
     public String getId() {
         return id;
