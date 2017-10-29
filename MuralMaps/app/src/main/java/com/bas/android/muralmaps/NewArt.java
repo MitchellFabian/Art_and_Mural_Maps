@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
@@ -40,8 +38,8 @@ public class NewArt extends AppCompatActivity {
         artist = (EditText) findViewById(R.id.new_artist);
         saveButton = (Button) findViewById(R.id.save_button);
         imageButton = (ImageButton) findViewById(R.id.image_button);
-        longitude = (EditText) findViewById(R.id.new_longitude);
-        latitude = (EditText) findViewById(R.id.new_latitude);
+        longitude = (EditText) findViewById(R.id.new_lng);
+        latitude = (EditText) findViewById(R.id.new_lat);
         realm = Realm.getDefaultInstance();
 
         saveButton.setOnClickListener(new View.OnClickListener(){
