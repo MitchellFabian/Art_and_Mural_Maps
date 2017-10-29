@@ -153,9 +153,10 @@ public class MainActivity extends AppCompatActivity {
         state = true;
 
         ArrayList<String> arrayList = new ArrayList<String>();
+        arrayList.add("All");
         arrayList.add("Most Popular");
         arrayList.add("Favorites");
-        arrayList.add("All");
+
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arrayList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
