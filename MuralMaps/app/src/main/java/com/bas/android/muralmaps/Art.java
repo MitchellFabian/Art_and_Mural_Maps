@@ -29,6 +29,11 @@ public class Art extends RealmObject{
         this.popularity = popularity;
     }
 
+    public void incrementPopularity()
+    {
+        this.popularity += 1;
+    }
+
     public String getId() {
         return id;
     }

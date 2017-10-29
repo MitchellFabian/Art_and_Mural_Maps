@@ -58,6 +58,8 @@ public class NewArt extends AppCompatActivity {
                             art.setName(name.getText().toString());
                             art.setLng(Double.parseDouble(longitude.getText().toString()));
                             art.setLat(Double.parseDouble(latitude.getText().toString()));
+                            art.setLike(Boolean.FALSE);
+                            art.setPopularity(0);
 
                             //check to see if any Arts in the Realm
                             if (realm.where(Art.class).findAllSorted("id").isEmpty()) {
