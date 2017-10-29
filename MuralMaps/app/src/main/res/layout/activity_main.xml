@@ -14,7 +14,6 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/appbar_padding_top"
         android:layout_alignParentTop="true"
-        android:background="#009A9F"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.constraint.ConstraintLayout
