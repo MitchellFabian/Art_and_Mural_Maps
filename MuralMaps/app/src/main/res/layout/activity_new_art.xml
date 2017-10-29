@@ -8,18 +8,18 @@
         tools:context="com.bas.android.muralmaps.NewArt">
 
         <EditText
-            android:id="@+id/new_latitude"
+            android:id="@+id/new_lng"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
             android:ems="10"
-            android:hint="Latitude"
+            android:hint="Longitude"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/new_longitude"
+            app:layout_constraintTop_toBottomOf="@+id/new_lat"
             android:inputType="numberSigned|numberDecimal" />
 
         <EditText
@@ -38,14 +38,14 @@
             app:layout_constraintTop_toBottomOf="@+id/image_button" />
 
     <EditText
-        android:id="@+id/new_longitude"
+        android:id="@+id/new_lat"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Longitude"
+        android:hint="Latitude"
         android:inputType="numberSigned|numberDecimal"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
