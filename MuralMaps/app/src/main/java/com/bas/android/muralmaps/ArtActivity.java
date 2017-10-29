@@ -61,7 +61,7 @@ public class ArtActivity extends AppCompatActivity {
                     @Override
                     public void execute(Realm realm){
                         art.setLike((art.getLike()^Boolean.TRUE));
-
+                        art.setPopularity(art.getPopularity() + 1);
                         finish();
                     }
                 });

@@ -66,23 +66,60 @@ public class ArtListFragment extends Fragment {
         ArrayList<Art> art2 = new ArrayList<Art>();
         RealmResults<Art> arts = mainActivity.realm.where(Art.class).findAll();
         Log.d("check", "before art loop");
-        for (Art art : arts) {
-            System.out.println(art);
-            art2.add(art);
-           // Boolean isPresent = false;
-           // try {
-           //     for (Vote vote : art.getVotes()) {
-            //        Log.d("Warning: OWNER USERNAME", vote.getOwner().getUsername().toString());
-              //      Log.d("MYUSERNAMEINPUT", mainActivity.user.getUsername().toString());
+        String choice = mainActivity.filterSpinner.getSelectedItem().toString();
+
+        if (choice == "Most Popular") {
+            for (Art art: arts)
+            {
+                if(art2.isEmpty())
+                {
+                    art2.add(art);
+                }
+                for(Art artX: art2)
+                {
+                    if (art.getPopularity() > artX.getPopularity())
+                    {
+                        int posi = art2.indexOf(artX);
+                        art2.add(posi, art);
+                    }
+                    else{
+                        art2.add(art);
+                    }
+
+                }
+
+            }
+        }
+        if (choice == "Favorites")
+        {
+            for (Art art : arts)
+            {
+                if(art.getLike())
+                {
+                    art2.add(art);
+                }
+            }
+        }
+        else {
+            for (Art art : arts) {
+                System.out.println(art);
+                art2.add(art);
+                // Boolean isPresent = false;
+                // try {
+                //     for (Vote vote : art.getVotes()) {
+                //        Log.d("Warning: OWNER USERNAME", vote.getOwner().getUsername().toString());
+                //      Log.d("MYUSERNAMEINPUT", mainActivity.user.getUsername().toString());
 //
-  //                  if (vote.getOwner().getUsername().equals(mainActivity.user.getUsername())) {
-    //                    isPresent = true;
-      //              }
-        //        }
-          //      if (isPresent == false) {
-            //        art2.add(art);
-              //  }
-            //}catch (Exception e){ Log.d("Exception", e.getMessage()+e.getStackTrace());}
+                //                  if (vote.getOwner().getUsername().equals(mainActivity.user.getUsername())) {
+                //                    isPresent = true;
+                //              }
+                //        }
+                //      if (isPresent == false) {
+                //        art2.add(art);
+                //  }
+                //}catch (Exception e){ Log.d("Exception", e.getMessage()+e.getStackTrace());}
+            }
+
         }
         return art2;
     }

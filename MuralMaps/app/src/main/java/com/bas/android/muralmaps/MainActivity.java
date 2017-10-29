@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private ViewPager mViewPager;
     private Button toggleButton;
-    private Spinner filterSpinner;
+    protected Spinner filterSpinner;
     private boolean state;
     public Realm realm;
     public User user;
@@ -107,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(SyncUser user) {
                 SyncConfiguration configuration = new SyncConfiguration
                         .Builder(user, "http://52.205.194.154:9080/~/mural_maps")
-                        .disableSSLVerification().waitForInitialRemoteData().schemaVersion((long) 13.0).build();
+                        .disableSSLVerification().waitForInitialRemoteData().schemaVersion((long) 13.5).build();
                 Realm.setDefaultConfiguration(configuration);
 
                 Realm.getInstanceAsync(configuration, new Realm.Callback() {
@@ -159,6 +160,18 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arrayList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         filterSpinner.setAdapter(adapter);
+
+        filterSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         toggleButton.setOnClickListener(new View.OnClickListener()
         {
